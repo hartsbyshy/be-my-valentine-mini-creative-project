@@ -88,6 +88,23 @@ p { margin: 0 0 18px; }
 
 .skip-link:focus { top: 12px; }
 
+/* PLAIN TEXT SYMBOLS */
+
+.text-symbol,
+.love-icon,
+.lens-star {
+  font-family: "Times New Roman", Georgia, serif;
+  font-variant-emoji: text;
+  font-style: normal;
+  color: inherit;
+}
+
+.text-symbol {
+  display: inline-block;
+  line-height: 1;
+  vertical-align: baseline;
+}
+
 /* NAVIGATION */
 
 .site-nav {
@@ -312,6 +329,7 @@ p { margin: 0 0 18px; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 7px;
   padding: 15px 32px;
   border: 1px solid var(--ink);
   border-radius: 50px;
@@ -767,10 +785,6 @@ p { margin: 0 0 18px; }
   background: #222;
   transform: translateX(-50%);
 }
-
-.original-art h3 { margin: 8px 0 12px; }
-.original-art > p:not(.eyebrow) { font-size: 15px; }
-.original-frame { margin-top: 20px; }
 
 /* CONTENT RATIONALE */
 

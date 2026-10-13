@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const heroEnvelope = document.getElementById("heroEnvelope");
   const heroEnvelopeButton = document.getElementById("heroEnvelopeButton");
+  const envelopeButtonLabel = document.getElementById("envelopeButtonLabel");
+  const envelopeButtonSymbol = document.getElementById("envelopeButtonSymbol");
 
   heroEnvelopeButton?.addEventListener("click", () => {
     if (!heroEnvelope) return;
@@ -42,9 +44,17 @@ document.addEventListener("DOMContentLoaded", () => {
       String(isOpen)
     );
 
-    heroEnvelopeButton.textContent = isOpen
-      ? "Close Love Letter ↺"
-      : "Open Your Love Letter ♡";
+    if (envelopeButtonLabel) {
+      envelopeButtonLabel.textContent = isOpen
+        ? "Close Love Letter"
+        : "Open Your Love Letter";
+    }
+
+    if (envelopeButtonSymbol) {
+      envelopeButtonSymbol.textContent = isOpen
+        ? "↺"
+        : "♡";
+    }
   });
 
 
