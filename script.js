@@ -3,15 +3,10 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  // =========================================
   // MOBILE NAVIGATION
-  // =========================================
 
-  const menuToggle =
-    document.querySelector(".menu-toggle");
-
-  const navLinks =
-    document.getElementById("navLinks");
+  const menuToggle = document.querySelector(".menu-toggle");
+  const navLinks = document.getElementById("navLinks");
 
   menuToggle?.addEventListener("click", () => {
     if (!navLinks) return;
@@ -27,30 +22,20 @@ document.addEventListener("DOMContentLoaded", () => {
   navLinks?.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
       navLinks.classList.remove("open");
-
-      menuToggle?.setAttribute(
-        "aria-expanded",
-        "false"
-      );
+      menuToggle?.setAttribute("aria-expanded", "false");
     });
   });
 
 
-  // =========================================
-  // HOMEPAGE ENVELOPE
-  // =========================================
+  // HOMEPAGE INTERACTIVE ENVELOPE
 
-  const heroEnvelope =
-    document.getElementById("heroEnvelope");
-
-  const heroEnvelopeButton =
-    document.getElementById("heroEnvelopeButton");
+  const heroEnvelope = document.getElementById("heroEnvelope");
+  const heroEnvelopeButton = document.getElementById("heroEnvelopeButton");
 
   heroEnvelopeButton?.addEventListener("click", () => {
     if (!heroEnvelope) return;
 
-    const isOpen =
-      heroEnvelope.classList.toggle("open");
+    const isOpen = heroEnvelope.classList.toggle("open");
 
     heroEnvelopeButton.setAttribute(
       "aria-expanded",
@@ -63,9 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  // =========================================
   // INTERACTIVE LENS SELECTOR
-  // =========================================
 
   const lenses = {
     honey: {
@@ -83,17 +66,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const lensImage =
-    document.getElementById("featuredLensImage");
-
-  const lensName =
-    document.getElementById("featuredLensName");
-
-  const lensDescription =
-    document.getElementById("featuredLensDescription");
+  const lensImage = document.getElementById("featuredLensImage");
+  const lensName = document.getElementById("featuredLensName");
+  const lensDescription = document.getElementById("featuredLensDescription");
 
   document.querySelectorAll("[data-lens]").forEach(button => {
-
     button.addEventListener("click", () => {
       const lens = lenses[button.dataset.lens];
 
@@ -107,38 +84,24 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (lensDescription) {
-        lensDescription.textContent =
-          lens.description;
+        lensDescription.textContent = lens.description;
       }
 
       lensImage.classList.remove("lens-swap");
-
       void lensImage.offsetWidth;
-
       lensImage.classList.add("lens-swap");
 
-      document.querySelectorAll("[data-lens]")
-        .forEach(option => {
+      document.querySelectorAll("[data-lens]").forEach(option => {
+        const selected = option === button;
 
-          const selected = option === button;
-
-          option.classList.toggle(
-            "selected",
-            selected
-          );
-
-          option.setAttribute(
-            "aria-pressed",
-            String(selected)
-          );
-        });
+        option.classList.toggle("selected", selected);
+        option.setAttribute("aria-pressed", String(selected));
+      });
     });
   });
 
 
-  // =========================================
   // INTERACTIVE INSTAGRAM STORY VIEWER
-  // =========================================
 
   const frames = [
     "IG flow/ig-flow-1.png",
@@ -148,53 +111,36 @@ document.addEventListener("DOMContentLoaded", () => {
     "IG flow/ig-flow-5.png"
   ];
 
-  const storyImage =
-    document.getElementById("igImage");
-
-  const progress =
-    document.getElementById("igProgress");
-
-  const counter =
-    document.getElementById("igCounter");
-
-  const status =
-    document.getElementById("storyStatus");
+  const storyImage = document.getElementById("igImage");
+  const progress = document.getElementById("igProgress");
+  const counter = document.getElementById("igCounter");
+  const status = document.getElementById("storyStatus");
 
   let index = 0;
 
   if (storyImage && progress) {
-
     frames.forEach(() => {
       const bar = document.createElement("div");
-
       bar.className = "story-segment";
 
       const fill = document.createElement("div");
-
       fill.className = "story-fill";
 
       bar.append(fill);
       progress.append(bar);
     });
 
-    const fills = [
-      ...progress.querySelectorAll(".story-fill")
-    ];
+    const fills = [...progress.querySelectorAll(".story-fill")];
 
     function showStory(nextIndex) {
-
-      index = (
-        nextIndex + frames.length
-      ) % frames.length;
+      index = (nextIndex + frames.length) % frames.length;
 
       storyImage.src = frames[index];
-
       storyImage.alt =
         `Instagram story frame ${index + 1} of ${frames.length}`;
 
       if (counter) {
-        counter.textContent =
-          `${index + 1} / ${frames.length}`;
+        counter.textContent = `${index + 1} / ${frames.length}`;
       }
 
       if (status) {
@@ -203,34 +149,24 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       fills.forEach((fill, position) => {
-        fill.style.width =
-          position <= index ? "100%" : "0%";
+        fill.style.width = position <= index ? "100%" : "0%";
       });
     }
 
     document.getElementById("igNext")
-      ?.addEventListener("click", () => {
-        showStory(index + 1);
-      });
+      ?.addEventListener("click", () => showStory(index + 1));
 
     document.getElementById("igPrev")
-      ?.addEventListener("click", () => {
-        showStory(index - 1);
-      });
+      ?.addEventListener("click", () => showStory(index - 1));
 
     document.getElementById("storyForward")
-      ?.addEventListener("click", () => {
-        showStory(index + 1);
-      });
+      ?.addEventListener("click", () => showStory(index + 1));
 
     document.getElementById("storyBack")
-      ?.addEventListener("click", () => {
-        showStory(index - 1);
-      });
+      ?.addEventListener("click", () => showStory(index - 1));
 
     document.getElementById("igViewer")
       ?.addEventListener("keydown", event => {
-
         if (event.key === "ArrowRight") {
           event.preventDefault();
           showStory(index + 1);
@@ -246,44 +182,30 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  // =========================================
   // SCROLL REVEAL ANIMATIONS
-  // =========================================
 
   const reducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
 
-  if (
-    "IntersectionObserver" in window &&
-    !reducedMotion
-  ) {
+  if ("IntersectionObserver" in window && !reducedMotion) {
+    document.documentElement.classList.add("js-reveal");
 
-    document.documentElement.classList.add(
-      "js-reveal"
-    );
-
-    const observer = new IntersectionObserver(
-      entries => {
-
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-
-      },
-      {
-        threshold: 0.03,
-        rootMargin: "0px 0px 40px 0px"
-      }
-    );
-
-    document.querySelectorAll(".reveal")
-      .forEach(element => {
-        observer.observe(element);
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
       });
+    }, {
+      threshold: 0.03,
+      rootMargin: "0px 0px 40px 0px"
+    });
+
+    document.querySelectorAll(".reveal").forEach(element => {
+      observer.observe(element);
+    });
   }
 
 });
