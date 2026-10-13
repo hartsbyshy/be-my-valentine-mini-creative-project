@@ -52,8 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (envelopeButtonSymbol) {
       envelopeButtonSymbol.textContent = isOpen
-        ? "↺"
-        : "♡";
+        ? "↺\uFE0E"
+        : "♡\uFE0E";
     }
   });
 
